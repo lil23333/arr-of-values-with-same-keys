@@ -1,0 +1,39 @@
+let events = [
+    { '2024-12-29' : 'evt1'},
+    { '2024-12-29' : 'evt2'},   
+    { '2024-12-29' : 'evt3'},
+    { '2024-12-30' : 'evt1-1'},
+    { '2024-12-30' : 'evt2-2'},
+    { '2024-12-30' : 'evt3-3'},
+    { '2024-12-31' : 'evt1-1-1'},
+    { '2024-12-31' : 'evt2-2-2'},
+    { '2024-12-31' : 'evt3-3-3'},
+    ];
+
+function combine (events) {
+    let output = {};
+    let item;
+    for (let i = 0; i < events.length; i++) {
+        item = events[i];
+        for (let prop in item) {
+            if (item.hasOwnProperty(prop)) {
+                if(!(prop in output)) {
+                    output[prop] = [];
+                }
+                output[prop].push(item[prop]);
+            }}}
+    return output;
+}
+
+let obj = combine (events) ;
+
+obj['29'] = obj['2024-12-29'];
+delete obj['2024-12-29'];
+
+obj['30'] = obj['2024-12-30'];
+delete obj['2024-12-30'];
+
+obj['31'] = obj['2024-12-31'];
+delete obj['2024-12-31'];
+
+console.log(obj);
